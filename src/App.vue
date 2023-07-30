@@ -1,26 +1,54 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="position-relative">
+        <div
+            v-if="checkIfLogged()"
+            class="position-absolute text-white bg-image d-none d-sm-none d-md-none d-lg-block"
+        ></div>
+        <div
+            v-if="checkIfLogged()"
+            class="position-absolute text-white bg-image2 d-block d-sm-block d-md-block d-lg-none"
+        ></div>
+        <div class="container pt-5" v-if="checkIfLogged()">
+            <my-header></my-header>
+        </div>
+        <router-view/>
+    </div>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import MyHeader from "@/components/myHeader.vue";
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+    components: {MyHeader},
+    data() {
+        return {
+            banned: [
+                'userDashboard'
+            ]
+        }
+    },
+    methods: {
+        checkIfLogged() {
+            let check = false
+            this.banned.map((item) => {
+                check = this.$route.name !== item
+            })
+            return check
+        }
+    },
 }
 </script>
-
 <style>
+@font-face {
+    font-family: 'LatoBoldItalic';
+    src: url('../public/fonts/Lato-BlackItalic.ttf') format('truetype');
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+    font-family: LatoBoldItalic, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    height: 100vh;
+}
+body {
+    background-color: black !important;
 }
 </style>

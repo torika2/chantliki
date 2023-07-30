@@ -1,0 +1,16 @@
+body{
+    background: #f4d3d8!important;
+}
+.pink-text-color{
+    color:#e5738c;
+}
+a{
+    font-size: 20px;
+    text-decoration: unset;
+}
+header #div{
+    border-color: #eb98a8!important;
+}
+.top-border-3{
+    border-top: 3px solid !important;
+}
